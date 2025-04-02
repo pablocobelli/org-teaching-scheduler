@@ -68,17 +68,17 @@ If found, return the subheading describing the holiday; otherwise, return nil."
   "Generate an Org-mode table of class dates based on WEEKDAYS between START-DATE and END-DATE.
 The function checks for holidays and adjusts the schedule accordingly."
   (interactive
-   (list (split-string (read-string "Teaching days (e.g., Monday,Wednesday): ") "," t " ")
-         (org-read-date nil nil nil "Start of semester: ")
-         (org-read-date nil nil nil "End of semester: ")))
+   (list (split-string (read-string "Días de cursada (e.g., Monday, Wednesday): ") "," t " ")
+         (org-read-date nil nil nil "Fecha de inicio de semestre: ")
+         (org-read-date nil nil nil "Fecha de fin de semestre: ")))
   (let* ((valid-days (mapcar #'capitalize weekdays))
          (start-date (date-to-time start-date))
          (end-date (date-to-time end-date))
          (current-date start-date)
          (counter 1)
          (last-month "")
-         (repeat-month (y-or-n-p "Repeat month name in each row? (y/n): "))
-         (table "#+NAME: cronograma\n| Class # | Month | Date | Day | Topic |\n|-\n"))
+         (repeat-month (y-or-n-p "Repetir el nombre del mes en cada línea? (y/n): "))
+         (table "#+NAME: cronograma\n| Clase # | Mes | Fecha | Día | Tema |\n|-\n"))
     (while (time-less-p current-date end-date)
       (let* ((date-str (format-time-string "%Y-%m-%d" current-date))
              (date-list (decode-time current-date))
