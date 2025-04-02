@@ -24,11 +24,10 @@
   :group 'org-teaching-scheduler)
 
 (defun extract-heading-before-parenthesis (heading)
-  "Return HEADING without any text after the first parenthesis."
-  (string-trim-right
-   (if (string-match "^\([^(\n]+\)" heading)
-       (match-string 1 heading)
-     heading)))
+  "Return HEADING without any text after the first parenthesis, trimming trailing spaces."
+  (if (string-match "^\\([^(\n]+\\)" heading)
+      (string-trim-right (match-string 1 heading))
+    heading))
 
 (defun check-holiday-for-date (date)
   "Check if DATE appears under the 'FERIADOS' heading in the academic calendar.
