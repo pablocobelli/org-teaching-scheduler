@@ -101,6 +101,7 @@ The function checks for holidays and adjusts the schedule accordingly."
               (setq counter (1+ counter))))
           (setq last-month month)))
       (setq current-date (time-add current-date (days-to-time 1))))
+    (setq table (concat table "|-\n"))
     (insert table)
     (org-table-align)))
 
